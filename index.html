@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guiz</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div id="tela-nome" class="tela ativa">
+    <form class="formulario">
+      <label for="nome">Digite seu nome:</label>
+      <input type="text" id="nome" required>
+      <button type="submit" class="botao-form">Começar Quiz</button>
+    </form>
+  </div>
+
+  <div class="tela" id="tela-quiz">
+    <h1>Quiz</h1>
+    <div class="container-wrapper">
+      <h2 class="questao">A pergunta vem aqui</h2>
+      <div class="botoes-resposta">
+        <button class="botao">Resposta 1</button>
+        <button class="botao">Resposta 2</button>
+        <button class="botao">Resposta 3</button>
+        <button class="botao">Resposta 4</button>
+      </div>
+    </div>
+    <div class="tempo"></div>
+  </div>
+
+  <div class="tela" id="tela-resultado">
+    <h2>Quiz Concluído!</h2>
+    <p id="texto-resultado"></p>
+    <button id="btn-reiniciar" class="botao-form">Jogar Novamente</button>
+  </div>
+
+  <!--<footer class="rodape">
+    <a href="https://github.com/Gustavo-Nog" target="_blank" rel="noopener noreferrer">Github</a>
+  </footer> -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
