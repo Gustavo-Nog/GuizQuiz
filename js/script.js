@@ -1,57 +1,12 @@
-const questoes = [
-  {
-    pergunta: "Qual a primeira linguagem de baixo nível legível para humanos?",
-    respostas: [
-      { text: "Fortran", correct: false },
-      { text: "Assembly", correct: true },
-      { text: "COBOL", correct: false },
-      { text: " C++", correct: false },
-    ]
-  },
-  {
-    pergunta: "Selecione a opção que contém apenas linguagens de baixo nível:",
-    respostas: [
-      { text: "Assembly, Java e C#", correct: false },
-      { text: "Java, Rust e Python", correct: false },
-      { text: "C++, Fortran e Python", correct: false },
-      { text: " Fortran, C e Assembly", correct: true },
-    ]
-  },
-  {
-    pergunta: "Quem criou a linguagem Python?",
-    respostas: [
-      { text: "Dennis Ritchie", correct: false },
-      { text: "Grace Hopper", correct: false },
-      { text: "James Gosling", correct: false },
-      { text: "Guido van Rossum", correct: true },
-    ]
-  },
-  {
-    pergunta: "Qual o nome do primeiro programador da história?",
-    respostas: [
-      { text: "Konrad Zuse", correct: false },
-      { text: "Claude Shannon", correct: false },
-      { text: "Ada Lovelace", correct: true },
-      { text: "Grace Hoppe", correct: false },
-    ]
-  },
-  {
-    pergunta: "Em que ano foi criada a linguagem de programação brasileira Lua",
-    respostas: [
-      { text: "1993", correct: true },
-      { text: "1987", correct: false },
-      { text: "1990", correct: false },
-      { text: "1986", correct: false },
-    ]
-  }
-];
-
 let nome = "";
+let temaSelecionado = "";
+let questoesSorteadas = [];
 let questaoAtual = 0;
 let pontuacao = 0;
-let tempoRestante = 7;
+let tempoRestante = 10;
 let intervaloTempo;
-let temposDeResposta = [];
+let temposRespostas = [];
+
 
 const telaNome = document.getElementById("tela-nome");
 const telaQuiz = document.getElementById("tela-quiz");
@@ -67,13 +22,24 @@ const botaoReiniciar = document.getElementById("btn-reiniciar");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  nome = inputNome.value.trim();
 
-  if (nome) {
+  nome = inputNome.value.trim();
+  temaSelecionado = document.getElementById("tema").value;
+
+  if (nome && temaSelecionado) {
+    prepararQuestoes();
     trocarTela("tela-quiz");
     iniciarQuiz();
   }
 });
+
+function prepararQuestoes() {
+  const todas = [...bancoQuestoes[temaSelecionado]];
+  // Embaralha
+  todas.sort(() => 0.5 - Math.random());
+  // Pega só as 7 primeiras
+  questoesSorteadas = todas.slice(0, 7);
+}
 
 function trocarTela(telaId) {
   document.querySelectorAll(".tela").forEach(tela => tela.classList.remove("ativa"));
@@ -82,18 +48,12 @@ function trocarTela(telaId) {
 
 function iniciarQuiz() {
   mostrarQuestao();
-  comecarTempo();
-
-  botoesResposta.forEach(button => {
-    button.addEventListener("click", respostaSelecionada);
-  });
-
 }
 
 function mostrarQuestao() {
   limparBotoes();
 
-  const questao = questoes[questaoAtual];
+  const questao = questoesSorteadas[questaoAtual];;
   questaoTexto.textContent = questao.pergunta;
 
   questao.respostas.forEach((resposta, i) => {
@@ -108,7 +68,7 @@ function mostrarQuestao() {
 }
 
 function comecarTempo() {
-  tempoRestante = 7;
+  tempoRestante = 10;
   tempo.textContent = `Tempo Restante: ${tempoRestante}s`;
   clearInterval(intervaloTempo);
 
@@ -116,8 +76,10 @@ function comecarTempo() {
     tempoRestante--;
     tempo.textContent = `Tempo Restante: ${tempoRestante}s`;
 
-    if (tempoRestante === 0) {
+    if (tempoRestante <= 0) {
       clearInterval(intervaloTempo);
+      tempo.textContent = `Tempo Restante: 0s`;
+      temposRespostas.push(10); // tempo máximo
       mostrarRespostaCorreta();
       setTimeout(proximaQuestao, 2000);
     }
@@ -129,8 +91,7 @@ function selecionarResposta(e) {
   const botao = e.target;
   const correto = botao.dataset.correct === "true";
 
-  const tempoGasto = 7 - tempoRestante;
-  temposDeResposta.push(tempoGasto);
+  temposRespostas.push(10 - tempoRestante); // tempo usado
 
   if (correto) {
     botao.classList.add("correct");
@@ -143,6 +104,7 @@ function selecionarResposta(e) {
   botoesResposta.forEach(b => b.disabled = true);
   setTimeout(proximaQuestao, 2000);
 }
+
 
 function mostrarRespostaCorreta() {
   botoesResposta.forEach(botao => {
@@ -163,7 +125,7 @@ function limparBotoes() {
 
 function proximaQuestao() {
   questaoAtual++;
-  if (questaoAtual < questoes.length) {
+  if (questaoAtual < questoesSorteadas.length) {
     mostrarQuestao();
   } else {
     mostrarResultado();
@@ -173,21 +135,27 @@ function proximaQuestao() {
 function mostrarResultado() {
   trocarTela("tela-resultado");
 
-  const totalTempo = temposDeResposta.reduce((a, b) => a + b, 0);
-  const mediaTempo = (totalTempo / temposDeResposta.length).toFixed(2);
+  const tempoTotal = temposRespostas.reduce((acc, t) => acc + t, 0);
+  const tempoMedio = (tempoTotal / temposRespostas.length).toFixed(2);
 
   textoResultado.innerHTML = `
-    ${nome}, você acertou ${pontuacao} de ${questoes.length} questões.<br>
-    ${pontuacao >= questoes.length / 2 ? "Parabéns!" : "Você pode melhorar!"}
-    Tempo médio de resposta: <strong>${mediaTempo} segundos</strong>
-    `;
+    ${nome}, você acertou ${pontuacao} de ${questoesSorteadas.length} questões.<br>
+    Tempo médio de resposta: ${tempoMedio}s<br>
+    ${pontuacao >= questoesSorteadas.length / 2 ? "Parabéns!" : "Você pode melhorar!"}
+  `;
 }
 
 botaoReiniciar.addEventListener("click", () => {
+  temaSelecionado = "";
+  questoesSorteadas = [];
   questaoAtual = 0;
   pontuacao = 0;
-  temposDeResposta = [];
-  trocarTela("tela-quiz");
-  iniciarQuiz();
+  temposRespostas = [];
+
+  // Limpa campo de nome e tema
+  document.getElementById("tema").selectedIndex = 0;
+
+  // Volta para a tela de nome/tema
+  trocarTela("tela-nome");
 });
 

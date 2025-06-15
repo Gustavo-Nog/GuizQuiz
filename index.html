@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guiz</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="imagem/png" sizes="32x32" href="assets/logo.png">
 
 </head>
 
@@ -14,6 +15,13 @@
     <form class="formulario">
       <label for="nome">Digite seu nome:</label>
       <input type="text" id="nome" required>
+      <label for="tema">Escolha um tema:</label>
+      <select id="tema" required>
+        <option value="" disabled selected>Selecione um tema</option>
+        <option value="programacao">Programação</option>
+        <option value="cinema">Cinema</option>
+        <option value="historia">História</option>
+      </select>
       <button type="submit" class="botao-form">Começar Quiz</button>
     </form>
   </div>
@@ -41,7 +49,8 @@
   <!--<footer class="rodape">
     <a href="https://github.com/Gustavo-Nog" target="_blank" rel="noopener noreferrer">Github</a>
   </footer> -->
-  <script src="script.js"></script>
+  <script src="js/perguntas.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
 
