@@ -84,8 +84,7 @@ body {
 
 select {
   width: 50%;
-  /* para ficar do tamanho parecido com seus inputs */
-  padding: 3px 12px;
+  padding: 3px 7px;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 4px;
   background-color: rgb(255, 255, 255);
@@ -105,18 +104,20 @@ h1 {
 }
 
 .questao {
-  font-size: 18px;
+  font-size: 14px;
   color: rgb(0, 0, 0);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 
 .botao {
   padding: 10px;
   margin: 10px 0;
+  background-color: rgb(255, 255, 255);
   color: rgb(34, 34, 34);
   width: 100%;
-  font-weight: 500;
+  font-weight: 400;
   border: 1px solid rgb(34, 34, 34);
   border-radius: 4px;
   text-align: center;
@@ -129,10 +130,6 @@ h1 {
   color: rgb(255, 255, 255);
 }
 
-.tempo {
-  margin-top: 15px;
-  font-weight: bold;
-}
 
 .correct {
   background: rgb(11, 162, 77);
@@ -144,17 +141,32 @@ h1 {
   color: rgb(255, 255, 255);
 }
 
+.tempo {
+  margin-top: 15px;
+  font-weight: bold;
+}
 
 .rodape {
   position: fixed;
-  bottom: 0;
   width: 100%;
-  background: rgb(128, 128, 128);
+  height: 50px;
   display: flex;
+  bottom: 0;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  /* por exemplo */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.5);
+  gap: 35px;
+}
+
+.rodape a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
 }
 
 @media (max-width: 480px) {

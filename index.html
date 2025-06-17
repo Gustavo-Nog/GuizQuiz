@@ -7,6 +7,7 @@
   <title>Guiz</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="imagem/png" sizes="32x32" href="assets/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
 </head>
 
@@ -17,10 +18,13 @@
       <input type="text" id="nome" required>
       <label for="tema">Escolha um tema:</label>
       <select id="tema" required>
-        <option value="" disabled selected>Selecione um tema</option>
-        <option value="programacao">Programação</option>
-        <option value="cinema">Cinema</option>
-        <option value="historia">História</option>
+        <option value="" disabled selected>🎯 Selecione um tema</option>
+        <option value="programacao">💻 Programação</option>
+        <option value="cinema">🎬 Cinema</option>
+        <option value="historia">📚 História</option>
+        <option value="games">🎮 Games</option>
+        <option value="musica">🎵 Música</option>
+        <option value="futebol">⚽ Futebol</option>
       </select>
       <button type="submit" class="botao-form">Começar Quiz</button>
     </form>
@@ -46,9 +50,14 @@
     <button id="btn-reiniciar" class="botao-form">Jogar Novamente</button>
   </div>
 
-  <!--<footer class="rodape">
-    <a href="https://github.com/Gustavo-Nog" target="_blank" rel="noopener noreferrer">Github</a>
-  </footer> -->
+  <footer class="rodape">
+    <a href="https://github.com/Gustavo-Nog" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-github"></i>Github
+    </a>
+    <a href="https://www.linkedin.com/in/gustavo-alves-nogueira" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-linkedin"></i> Linkedin
+    </a>
+  </footer>
   <script src="js/perguntas.js"></script>
   <script src="js/script.js"></script>
 

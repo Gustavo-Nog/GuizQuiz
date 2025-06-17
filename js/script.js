@@ -53,7 +53,7 @@ function iniciarQuiz() {
 function mostrarQuestao() {
   limparBotoes();
 
-  const questao = questoesSorteadas[questaoAtual];;
+  const questao = questoesSorteadas[questaoAtual];
   questaoTexto.textContent = questao.pergunta;
 
   questao.respostas.forEach((resposta, i) => {
@@ -79,7 +79,7 @@ function comecarTempo() {
     if (tempoRestante <= 0) {
       clearInterval(intervaloTempo);
       tempo.textContent = `Tempo Restante: 0s`;
-      temposRespostas.push(10); // tempo máximo
+      temposRespostas.push(10);
       mostrarRespostaCorreta();
       setTimeout(proximaQuestao, 2000);
     }
@@ -91,7 +91,7 @@ function selecionarResposta(e) {
   const botao = e.target;
   const correto = botao.dataset.correct === "true";
 
-  temposRespostas.push(10 - tempoRestante); // tempo usado
+  temposRespostas.push(10 - tempoRestante);
 
   if (correto) {
     botao.classList.add("correct");
@@ -117,9 +117,12 @@ function mostrarRespostaCorreta() {
 
 function limparBotoes() {
   botoesResposta.forEach(botao => {
-    botao.classList.remove("correct", "incorrect");
+    botao.className = "botao";
     botao.textContent = "";
     botao.disabled = false;
+
+    botao.style.backgroundColor = "";
+    botao.style.color = "";
   });
 }
 
@@ -152,10 +155,8 @@ botaoReiniciar.addEventListener("click", () => {
   pontuacao = 0;
   temposRespostas = [];
 
-  // Limpa campo de nome e tema
   document.getElementById("tema").selectedIndex = 0;
 
-  // Volta para a tela de nome/tema
   trocarTela("tela-nome");
 });
 
