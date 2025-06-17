@@ -56,14 +56,14 @@ Um quiz interativo feito com HTML, CSS e JavaScript. O usuário informa seu nome
 
 ## 📷 Preview
 
-> ![Tela Inicial](assets/Tela-Inicial.png)(https://gustavo-nog.github.io/GuizQuiz)
+> ![Tela Inicial](assets/Tela-Inicial.png)
 > ![Tela do Quiz-1](assets/Tela-Resposta-Certa.png)  
 > ![Tela do Quiz-2](assets/Tela-do-Quiz-Com-Resposta-Errada.png)  
 > ![Tela de Resultados](assets/Tela-de-Resultados.png)  
 
 ---
 
-Autor
-Gustavo Alves Nogueira
-📧 gustavopan3g7@gmail.com
-🔗 [LinkedIn](https://www.linkedin.com/in/gustavo-alves-nogueira)
+### Autor
+- Gustavo Pereira Alves Nogueira
+- 📧 gustavopan3g7@gmail.com
+- 🔗 [LinkedIn](https://www.linkedin.com/in/gustavo-alves-nogueira)
