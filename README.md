@@ -2,6 +2,8 @@
 
 Um quiz interativo feito com HTML, CSS e JavaScript. O usuário informa seu nome, escolhe um tema (como Programação, Cinema, História, etc.) e responde a 7 perguntas sorteadas aleatoriamente. O sistema calcula a pontuação final e o tempo médio de resposta.
 
+👉 Você pode acessar o quiz clicando [aqui](https://gustavo-nog.github.io/GuizQuiz).
+
 ---
 
 ## 🚀 Funcionalidades
@@ -30,12 +32,13 @@ Um quiz interativo feito com HTML, CSS e JavaScript. O usuário informa seu nome
 
 ## 📁 Estrutura do Projeto
 ```bash
-/- Guiz  
+/ Guiz  
 │
 ├── index.html # Estrutura da interface
 ├── style.css # Estilos visuais e responsividade
-├── script.js # Lógica do quiz (JS puro)
-├── bancoQuestoes.js # Banco de dados com as perguntas por tema
+├── js/
+│ └── script.js # Lógica do quiz
+│ └── perguntas.js # Banco de dados com as perguntas por tema
 ├── assets/
 │ └── hacker.jpeg # Imagem de fundo
 ```
